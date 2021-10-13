@@ -1,0 +1,20 @@
+%h1= params[:name]
+
+.row
+    .col-10
+        - @user.posts.sort_by(&:created_at).reverse.each do |p|
+            .card.border-primary.mb-3{style:"max-width: 25rem; margin: 5px;"}
+                .card-header
+                    = p.created_at
+                .card-body.text-primary
+                    %p.card-text{style:"font-size: large;"}
+                        = p.msg
+    .col
+        - if @followed
+            = simple_form_for(@follow, url: profile_url(params[:name]), method: "delete") do |f|
+                .form-actions.mt-2
+                    = f.button :submit, "Unfollow", class: "btn btn-danger"
+        - else
+            = simple_form_for(@follow, url: profile_url(params[:name])) do |f|
+                .form-actions.mt-2
+                    = f.button :submit, "Follow", class: "btn btn-primary"

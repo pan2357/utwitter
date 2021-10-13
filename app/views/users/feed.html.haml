@@ -1,0 +1,17 @@
+%h1 Feed
+%p#notice= notice
+
+.row
+    .col-10
+        - @a.each do |p|
+            .card.border-primary.mb-3{style:"max-width: 25rem; margin: 5px;"}
+                .card-header
+                    = p.created_at
+                .card-body.text-primary
+                    %h5.card-text
+                        = User.find(p.user_id).name
+                    %p.card-title{style:"font-size: large;"}
+                        = p.msg
+    .col
+        %a{class:"btn btn-primary", href:"/new_post", role:"button", style:"margin: 5px;"} Post
+        %a{class:"btn btn-warning", href:"/main", role:"button", style:"margin: 5px;"} Log out

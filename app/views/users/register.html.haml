@@ -1,0 +1,14 @@
+%h1 Register
+= simple_form_for(@user, url: register_url) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
+
+  .form-actions.mt-2
+    = f.button :submit, "Register", class: "btn btn-primary"
+    %a{class:"btn btn-warning", href:"/main", role:"button"} Cancel

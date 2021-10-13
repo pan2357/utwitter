@@ -1,0 +1,12 @@
+%h1 Login
+%p#alert= alert
+%p#notice= notice
+
+= simple_form_for(@user, url: main_url) do |f|
+  .form-inputs
+    = f.input :email
+    = f.input :password
+
+  .form-actions.mt-2
+    = f.button :submit, "Login", class: "btn btn-primary"
+    %a{class:"btn btn-warning", href:"/register", role:"button"} Register

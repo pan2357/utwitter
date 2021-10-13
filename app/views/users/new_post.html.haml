@@ -1,0 +1,11 @@
+%h1 New Post
+= simple_form_for(@post, url: new_post_custom_url) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :msg
+
+  .form-actions.mt-2
+    = f.button :submit, "Ok", class: "btn btn-primary"
+    %a{class:"btn btn-warning", href:"/feed", role:"button"} Cancel
