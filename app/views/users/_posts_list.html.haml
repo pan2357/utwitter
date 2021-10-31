@@ -15,15 +15,17 @@
                 .col
                     - if p.this_user_liked(session[:user_id])
                         = button_to "Unlike", like_manager_url, params: {id: p.id}, class: "btn btn-danger", method: :delete
-                        -# = simple_form_for(@post, url: like_manager_url, method: "delete") do |f|
-                        -#     .form-inputs
-                        -#         = f.input :id, as: :hidden, input_html: { value: "#{p.id}" }
-                        -#     .form-actions.mt-2
-                        -#         = f.button :submit, "Unlike", class: "btn btn-danger"
                     - else
                         = button_to "Like", like_manager_url, params: {id: p.id}, class: "btn btn-primary"
-                        -# = simple_form_for(@post, url: like_manager_url) do |f|
-                        -#     .form-inputs
-                        -#         = f.input :id, as: :hidden, input_html: { value: "#{p.id}" }
-                        -#     .form-actions.mt-2
-                        -#         = f.button :submit, "Like", class: "btn btn-primary"
+                    -# - if p.this_user_liked(session[:user_id])
+                    -#     = simple_form_for(@post, url: like_manager_url, method: "delete") do |f|
+                    -#         .form-inputs
+                    -#             = f.input :id, as: :hidden, input_html: { value: "#{p.id}" }
+                    -#         .form-actions.mt-2
+                    -#             = f.button :submit, "Unlike", class: "btn btn-danger"
+                    -# - else
+                    -#     = simple_form_for(@post, url: like_manager_url) do |f|
+                    -#         .form-inputs
+                    -#             = f.input :id, as: :hidden, input_html: { value: "#{p.id}" }
+                    -#         .form-actions.mt-2
+                    -#             = f.button :submit, "Like", class: "btn btn-primary"
