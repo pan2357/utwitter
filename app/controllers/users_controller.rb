@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(email: user_params[:email])
     if @user == nil
-      redirect_to main_url, alert: "Email not existed"
+      redirect_to main_url, alert: "Email or Password incorrect"
     else
       if @user.authenticate(user_params[:password])
         redirect_to feed_url

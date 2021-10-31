@@ -7,3 +7,13 @@ one:
 two:
   user: two
   msg: MyString
+
+#------------------------------
+
+three:
+  user: u1
+  msg: test1
+
+four:
+  user: u2
+  msg: u2test1
