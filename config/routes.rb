@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :likes
   resources :follows
   resources :posts
   resources :users
@@ -17,5 +18,8 @@ Rails.application.routes.draw do
   get '/profile/:name', to: 'users#profile', as: 'profile'
   post '/profile/:name', to: 'users#follow_user'
   delete '/profile/:name', to: 'users#unfollow_user'
+
+  post 'like', to: 'users#like_post', as: 'like_manager'
+  delete 'like', to: 'users#unlike_post'
 
 end

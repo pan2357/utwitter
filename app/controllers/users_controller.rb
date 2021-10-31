@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :logged_in, only: %i[ feed new_post create_new_post profile follow_user unfollow_user ]
+  before_action :logged_in, only: %i[ feed new_post create_new_post profile follow_user unfollow_user like_post unlike_post ]
 
   # GET /users or /users.json
   def index
@@ -93,10 +93,17 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @user = User.find(session[:user_id])
-    @a = []
-    Follow.where(follower_id: session[:user_id]).each{|f| User.find(f.followee_id).posts.each{|p| @a<<p}}
-    @a = @a.sort_by(&:created_at).reverse
+    # @user = User.find(session[:user_id])
+    # a = []
+    # Follow.where(follower_id: session[:user_id]).each{|f| User.find(f.followee_id).posts.each{|p| a<<p}}
+    # @a = a.sort_by(&:created_at).reverse
+
+    # ids = Follow.where(follower_id: session[:user_id]).pluck ('followee_id')
+    # @a = Post.where(user_id: ids).order('created_at DESC')
+
+    @posts = User.find(session[:user_id]).get_feed_post
+    @post = Post.new
+    session[:current_url] = request.original_url
   end
 
   def new_post
@@ -117,8 +124,13 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by(name: params[:name])
+    @posts = @user.get_profile_post
+
     @follow = Follow.new
+    @post = Post.new
+
     @followed = Follow.find_by(follower_id: session[:user_id], followee_id: User.find_by(name: params[:name]))
+    session[:current_url] = request.original_url
   end
 
   def follow_user
@@ -129,6 +141,16 @@ class UsersController < ApplicationController
   def unfollow_user
     Follow.find_by(follower_id: session[:user_id], followee_id: User.find_by(name: params[:name]).id).destroy
     redirect_to profile_url(params[:name])
+  end
+
+  def like_post
+    Like.create(user_id: session[:user_id], post_id: params[:id])
+    redirect_to session[:current_url]
+  end
+
+  def unlike_post
+    Like.find_by(user_id: session[:user_id], post_id: params[:id]).destroy
+    redirect_to session[:current_url]
   end
 
   private
