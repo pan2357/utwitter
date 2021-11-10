@@ -1,6 +1,6 @@
 %h1 Listing users
 
-%table
+%table#users_index_table
   %thead
     %tr
       %th Name
@@ -21,3 +21,8 @@
 %br
 
 = link_to 'New User', new_user_path
+
+:javascript
+  $(document).ready( function () {
+    $('#users_index_table').DataTable();
+  } );

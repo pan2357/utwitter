@@ -1,6 +1,6 @@
 %h1 Listing follows
 
-%table
+%table#follows_index_table
   %thead
     %tr
       %th Follower
@@ -21,3 +21,8 @@
 %br
 
 = link_to 'New Follow', new_follow_path
+
+:javascript
+  $(document).ready( function () {
+    $('#follows_index_table').DataTable();
+  } );

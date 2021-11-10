@@ -62,6 +62,11 @@ class UsersController < ApplicationController
     session[:user_id] = nil
   end
 
+  def logout
+    session[:user_id] = nil
+    redirect_to main_url
+  end
+
   def login
     @user = User.find_by(email: user_params[:email])
     if @user == nil

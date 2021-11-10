@@ -1,6 +1,6 @@
 %h1 Listing posts
 
-%table
+%table#posts_index_table
   %thead
     %tr
       %th User
@@ -21,3 +21,8 @@
 %br
 
 = link_to 'New Post', new_post_path
+
+:javascript
+  $(document).ready( function () {
+    $('#posts_index_table').DataTable();
+  } );

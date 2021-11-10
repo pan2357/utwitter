@@ -1,6 +1,6 @@
 %h1 Listing likes
 
-%table
+%table#likes_index_table
   %thead
     %tr
       %th Post
@@ -21,3 +21,8 @@
 %br
 
 = link_to 'New Like', new_like_path
+
+:javascript
+  $(document).ready( function () {
+    $('#likes_index_table').DataTable();
+  } );

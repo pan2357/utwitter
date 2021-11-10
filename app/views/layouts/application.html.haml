@@ -9,8 +9,12 @@
     %link{href:"https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css", rel:"stylesheet", integrity:"sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF", crossorigin:"anonymous"}
     %script{src:"https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js", integrity:"sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ", crossorigin:"anonymous"}
     %script{src:"https://code.jquery.com/jquery-3.6.0.min.js"}
+    %link{href:"https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css", rel:"stylesheet", type:"text/css"}
+    %script{src:"https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js", type:"text/javascript"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    -# = stylesheet_link_tag 'application', media: 'all'
+    -# = javascript_pack_tag 'application'
   %body
     = render 'layouts/navbar'
     .container 

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'main', to: 'users#main', as: 'main'
   post 'main', to: 'users#login'
 
+  get 'logout', to: 'users#logout', as: 'logout'
+
   get 'register', to: 'users#register', as: 'register'
   post 'register', to: 'users#create_new_user'
 
